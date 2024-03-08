@@ -1,9 +1,9 @@
 {
     "name": "do3bol",
     "id": "dapp_2dMhM1uNLYQjd4HlLWTDV0aRKw1",
-    "app_url": "https://9443-141-125-104-103.ngrok-free.app",
+    "app_url": "https://3ab7-141-125-104-103.ngrok-free.app",
     "redirect_urls": [
-        "https://39fb-102-50-248-53.ngrok-free.app/auth/callback",
+        "https://3ab7-141-125-104-103.ngrok-free.app/auth/callback",
         "https://seller-area.youcanshop.dev/admin/apps/draft/authorization-callback/dapp_2dMhM1uNLYQjd4HlLWTDV0aRKw1"
     ],
     "oauth": {

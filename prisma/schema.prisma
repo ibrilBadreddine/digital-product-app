@@ -10,10 +10,10 @@ datasource db {
   url      = "file:dev.sqlite"
 }
 
-model Session {
+model Product {
   id          String    @id
   storeId     String
-  scope       String?
-  expires     DateTime?
-  accessToken String?
+  status      Boolean   @default(false)
+  file        String
+  createdAt   DateTime  @default(now())
 }
