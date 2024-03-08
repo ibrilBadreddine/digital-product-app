@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const { data } = await useFetch('/api/products')
+
 const payload = ref({
   name: null,
   slug: null,

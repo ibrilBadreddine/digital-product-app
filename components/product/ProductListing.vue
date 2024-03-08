@@ -1,25 +1,39 @@
 <script setup lang="ts">
-// import { columns } from "./helpers";
+const { data } = await useFetch('/api/products')
 
 const search = ref();
 
 const columns = [
-  { label: "", accessor: "id" },
   { label: "Name", accessor: "name" },
+  { label: "Price", accessor: "price" },
+  { label: "Status", accessor: "status" },
   { label: "Created At", accessor: "created_at" },
+  { label: "Action", accessor: "action" },
 ];
 
-const data = [
-  {
-    id: "0",
-    first_name: "Do3nbol",
-    created_at: "22-05-2023",
-  },
-];
+const formatDate = (date: string) => {
+  const formatted = new Date(date);
+
+  return new Intl.DateTimeFormat("en-US").format(formatted);
+}
+
+const activeProduct = ref<number | null>(null);
+
+const TOTAL = 50;
+const PER_PAGE = 5;
+const TOTAL_PAGES = Math.ceil(TOTAL / PER_PAGE);
+
+const currentPage = ref(1);
+
+function handlePaginationNavigation(pageNumber: number) {
+  currentPage.value = pageNumber;
+}
+
 </script>
 <template>
   <div class="product-list">
     <div class="product-box">
+      <!-- Filter -->
       <div class="product-filter">
         <Input v-model="search" placeholder="Search by product name..." />
         <div class="actions">
@@ -28,6 +42,7 @@ const data = [
           </PrimaryButton>
         </div>
       </div>
+      <!-- Table -->
       <table>
         <thead>
           <tr>
@@ -37,13 +52,33 @@ const data = [
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(row, i) in data" :key="i">
-            <td>{{ row.id }}</td>
-            <td>{{ row.first_name }}</td>
-            <td>{{ row.created_at }}</td>
+          <tr v-for="(row, i) in data?.response.data" :key="i">
+            <td>{{ row.name }}</td>
+            <td>
+              <span class="row">{{ row.price }}</span>
+            </td>
+            <td>
+              <span class="row status">Stopped</span>
+            </td>
+            <td>{{ formatDate(row.created_at) }}</td>
+            <td>
+              <div class="action">
+                <Toggle v-model="activeProduct" />
+              </div>
+            </td>
           </tr>
         </tbody>
       </table>
+    </div>
+    <!-- Pagination -->
+    <div class="pagination-box">
+      <PaginationBar
+        :current="currentPage"
+        :size="TOTAL_PAGES"
+        :count="PER_PAGE"
+        :total="TOTAL"
+        @update:current="handlePaginationNavigation"
+      />
     </div>
   </div>
 </template>
@@ -83,21 +118,33 @@ const data = [
     tbody tr td {
       padding: 2em 0;
     }
+    .row {
+      background-color: var(--blue-50);
+      color: var(--blue-500);
+      font-size: 13px;
+      padding: 8px 12px;
+      border-radius: 10px;
+    }
+    .status {
+      background-color: var(--red-50);
+      color: var(--red-500);
+    }
+    .action:deep(.toggle[aria-checked=true]) {
+      background-color: var(--blue-500);
+    }
   }
-
-  table tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-
-  // table tr:hover {background-color: #ddd;}
-
   table th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    // background-color: #04aa6d;
     color: var(--gray-500);
     font-weight: normal;
+  }
+  .pagination-box {
+    margin-top: 2em;
+    .pagination-bar:deep(.active) {
+      background-color: var(--blue-500);
+    }
   }
 }
 </style>
