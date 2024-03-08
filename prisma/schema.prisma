@@ -15,5 +15,12 @@ model Product {
   storeId     String
   status      Boolean   @default(false)
   file        String
-  createdAt   DateTime  @default(now())
+}
+
+model Session {
+  id          String    @id
+  storeId     String
+  scope       String?
+  expires     DateTime?
+  accessToken String?
 }
