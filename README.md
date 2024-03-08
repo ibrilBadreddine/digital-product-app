@@ -1,3 +1,3 @@
-# shop-app-template-nuxt
+# Digital Product - APP
 
-A minimal nuxt template for embedded YouCan Shop apps.
+> HackDay
