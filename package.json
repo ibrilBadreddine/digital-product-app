@@ -27,6 +27,9 @@
     "@youcan/ui-icons": "2.5.9-beta.1",
     "@youcan/ui-vue3": "2.5.9-beta.1",
     "isbot": "^4.2.0",
-    "jsonwebtoken": "^9.0.2"
+    "jsonwebtoken": "^9.0.2",
+    "nuxt-icons": "^3.2.1",
+    "sass": "^1.71.1",
+    "unocss": "^0.58.5"
   }
 }
