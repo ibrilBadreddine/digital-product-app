@@ -9,6 +9,6 @@
 
 <style scoped lang="scss">
 body {
-  
+
 }
 </style>

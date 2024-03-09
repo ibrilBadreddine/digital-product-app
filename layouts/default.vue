@@ -18,4 +18,8 @@ html {
 body {
   padding: 4em;
 }
+.wrapper.enabled:has(.input:focus) {
+  box-shadow: 0px 0px 0px 3px #d2e4f8, 0px 1px 2px 0px #3333330d;
+  border-color: var(--blue-500);
+}
 </style>

@@ -1,3 +1,7 @@
+<script setup lang="ts">
+// Products Data
+const { data } = await useFetch("/api/products");
+</script>
 <template>
   <div class="product-container">
     <!-- Head -->
@@ -9,13 +13,13 @@
         <h2>Products <span>0</span></h2>
       </div>
       <div class="action">
-        <PrimaryButton>
-            Add Product
-        </PrimaryButton>
+        <PrimaryButton> Add Product </PrimaryButton>
       </div>
     </div>
     <!-- Listing -->
-    <ProductListing />
+    <ProductListing 
+      :products="data?.response.data" 
+    />
   </div>
 </template>
 <style scoped lang="scss">
@@ -39,7 +43,7 @@
       }
     }
     p {
-        color: var(--gray-500);
+      color: var(--gray-500);
     }
     .base-button {
       background-color: var(--blue-500);

@@ -24,6 +24,12 @@
         Add Product
       </NuxtLink>
     </div>
+    <div class="bg-images">
+      <img src="https://cdn3d.iconscout.com/3d/premium/thumb/info-mail-6356451-5231921.png" alt="email">
+      <img src="https://static.vecteezy.com/system/resources/thumbnails/010/833/483/small_2x/earphone-3d-for-illustration-png.png" alt="support">
+      <img src="https://cdn3d.iconscout.com/3d/premium/thumb/chat-bubble-7811331-6267165.png" alt="chat">
+      <img src="https://cdn3d.iconscout.com/3d/premium/thumb/notification-bell-3979316-3364144.png" alt="bell">
+    </div>
   </div>
 </template>
 <style scoped lang="scss">
@@ -73,6 +79,33 @@
         background-color: var(--blue-50);
         color: var(--blue-500);
         translate: 0 -.5em;
+      }
+    }
+  }
+  .bg-images {
+    img {
+      position: absolute;
+      width: 50px;
+      &:nth-child(1) {
+        left: 10%;
+        top: 70%;
+        filter: hue-rotate(321deg) blur(2px);
+      }
+      &:nth-child(2) {
+        right: 20%;
+        top: 80%;
+        filter: hue-rotate(347deg) blur(2px);
+        width: 80px;
+      }
+      &:nth-child(3) {
+        left: 20%;
+        top: 25%;
+        filter: hue-rotate(175deg) blur(2px);
+      }
+      &:nth-child(4) {
+        right: 10%;
+        top: 20%;
+        filter: hue-rotate(178deg) blur(2px);
       }
     }
   }

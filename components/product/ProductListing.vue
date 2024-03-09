@@ -1,24 +1,29 @@
 <script setup lang="ts">
-const { data } = await useFetch('/api/products')
+import { columns, formatDate } from "./helpers";
+import type { Product } from "./types";
 
-const search = ref();
+const { products } = defineProps({
+  products: {
+    type: Array as PropType<Product[]>,
+    required: true
+  }
+});
 
-const columns = [
-  { label: "Name", accessor: "name" },
-  { label: "Price", accessor: "price" },
-  { label: "Status", accessor: "status" },
-  { label: "Created At", accessor: "created_at" },
-  { label: "Action", accessor: "action" },
-];
+// Search by product name
+const searchTerm = ref();
 
-const formatDate = (date: string) => {
-  const formatted = new Date(date);
+// Link Product
+const linkProduct = async (product: Product) => {
+  const link = await useFetch("/api/link-product", {
+    method: "post",
+    body: {
+      id: product.id,
+      file: product.images[0].url,
+    },
+  });
+};
 
-  return new Intl.DateTimeFormat("en-US").format(formatted);
-}
-
-const activeProduct = ref<number | null>(null);
-
+// Pagination
 const TOTAL = 50;
 const PER_PAGE = 5;
 const TOTAL_PAGES = Math.ceil(TOTAL / PER_PAGE);
@@ -28,18 +33,15 @@ const currentPage = ref(1);
 function handlePaginationNavigation(pageNumber: number) {
   currentPage.value = pageNumber;
 }
-
 </script>
 <template>
   <div class="product-list">
     <div class="product-box">
       <!-- Filter -->
       <div class="product-filter">
-        <Input v-model="search" placeholder="Search by product name..." />
+        <Input v-model="searchTerm" placeholder="Search by product name..." />
         <div class="actions">
-          <PrimaryButton>
-            Search
-          </PrimaryButton>
+          <PrimaryButton> Search </PrimaryButton>
         </div>
       </div>
       <!-- Table -->
@@ -52,7 +54,7 @@ function handlePaginationNavigation(pageNumber: number) {
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(row, i) in data?.response.data" :key="i">
+          <tr v-for="(row, i) in products" :key="i">
             <td>{{ row.name }}</td>
             <td>
               <span class="row">{{ row.price }}</span>
@@ -63,7 +65,25 @@ function handlePaginationNavigation(pageNumber: number) {
             <td>{{ formatDate(row.created_at) }}</td>
             <td>
               <div class="action">
-                <Toggle v-model="activeProduct" />
+                <button class="link" @click="linkProduct(row)">
+                  <div class="icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="w-6 h-6"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
+                      />
+                    </svg>
+                  </div>
+                  Link
+                </button>
               </div>
             </td>
           </tr>
@@ -107,7 +127,8 @@ function handlePaginationNavigation(pageNumber: number) {
     color: var(--gray-700);
     border-radius: 1.5em;
     padding: 2em;
-    box-shadow: rgba(145, 144, 144, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+    box-shadow: rgba(145, 144, 144, 0.1) 0px 0px 5px 0px,
+      rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
   }
   table {
     border-collapse: collapse;
@@ -129,8 +150,28 @@ function handlePaginationNavigation(pageNumber: number) {
       background-color: var(--red-50);
       color: var(--red-500);
     }
-    .action:deep(.toggle[aria-checked=true]) {
-      background-color: var(--blue-500);
+    .action {
+      .link {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+        background-color: transparent;
+        color: var(--blue-500);
+        font-size: 13px;
+        padding: 8px 12px;
+        border-radius: 10px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        transition: 0.4s;
+        &:hover {
+          background-color: var(--blue-50);
+        }
+        .icon {
+          width: 18px;
+          height: 18px;
+        }
+      }
     }
   }
   table th {

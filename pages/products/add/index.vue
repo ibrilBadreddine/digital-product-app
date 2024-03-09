@@ -1,5 +1,4 @@
 <script setup lang="ts">
-const { data } = await useFetch('/api/products')
 
 const payload = ref({
   name: null,
@@ -65,7 +64,7 @@ const payload = ref({
             />
           </template>
           <template #info>
-            You can only change your username once every 30 days
+            Optimize your web address by personalizing it
           </template>
         </InputGroup>
         <!-- Price -->
@@ -80,7 +79,7 @@ const payload = ref({
             />
           </template>
           <template #info>
-            You can only change your username once every 30 days
+            Specify the cost of your product
           </template>
         </InputGroup>
       </div>
