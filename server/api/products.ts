@@ -1,8 +1,10 @@
 export default defineEventHandler(async (event) => {
+  // console.log(event.context.session.accessToken)
+  const accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjgwODJjOGZkNDI3ODc0MmU0ZDQ4OWVjZmRhMGZhZjI1NTI4ZjA5MGQ4MDU1ZGEzNjI5ZjI3NmNiNDQ1MzYzNWM2OWI2OWIzNjQxMTUyYWNlIn0.eyJhdWQiOiI2NiIsImp0aSI6IjgwODJjOGZkNDI3ODc0MmU0ZDQ4OWVjZmRhMGZhZjI1NTI4ZjA5MGQ4MDU1ZGEzNjI5ZjI3NmNiNDQ1MzYzNWM2OWI2OWIzNjQxMTUyYWNlIiwiaWF0IjoxNzA5ODk0NTU2LCJuYmYiOjE3MDk4OTQ1NTYsImV4cCI6MTcxMTE5MDU1Niwic3ViIjoiYjgyYThkY2YtODQ2Ni00ZjMxLWE2OTktYTc3YTQ3YWNkMmQ5Iiwic2NvcGVzIjpbIioiXX0.BtXvmK0xa9XKWw-UeEZJEf40HlkEkruUsB6LUkrnoULu95ZAy-wn13W0sUhnhGMz2xlBrKb5gDRqy7SDs3ojaTkjwHpgFOaYBZKXcUA56MJbiJ5See0r9uExwo_Ty7HGNmuF2Fh7vP_3O3DIgyIiggb-wQ6Mp7Qasii7qqU89A6jYt5XdSeaPmGWnCpH-5zlIU8M0OHEIB_J_6CNipYWfhR3U_979migH-mIViw96M2v08vl7OEum8Asqlgk9XRxTAvbdJoxcwBQQBIkrSvdDX6FAAU4zg0v6LLCugjTdT4Kv6g-D80o3yuFo68keYnKJeir_jN5oUrcipxnPq9wFnnioFmG84TaooeIl8W-_3K-AMY-gH3KvBfVL3bcknN4UU4dBxPHLehqFUFaeY2k1gn3-NPC_kgpjc-xEv8B1wkhE40nX77UjrrWDGatt1nbW92PU-RTqTnjAonsLOdWibWlKFrgP0D_2o7sAjxVx3xixgKd4S9LYnlnP9Xy-tRz3AywsR64galf3nhSPeOMkxigSZdriPdgp77XOMH0Hjuvzi9k30gy2r1bdzXpUv0saHFQBWYmg9AF5COpDjxCpJ6m7MngNeoeaWYO2Gaf8cwQo78CzGIGHyLyQJK2nIYeygybA_lvfF8CnLwVrH5OWEpbMUJMjc_ofzjD48AIhK4'
   const response = await fetch("https://api.youcanshop.dev/products", {
     method: "GET",
     headers: {
-      Authorization: "Bearer " + event.context.session.accessToken,
+      Authorization: "Bearer " + accessToken,
     },
   });
   return {
