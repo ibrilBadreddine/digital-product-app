@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const localePath = useLocalePath()
+
 // Products Data
 const { data } = await useFetch("/api/products");
 </script>
@@ -10,11 +12,11 @@ const { data } = await useFetch("/api/products");
     <div class="product-label">
       <!-- Label -->
       <div class="label">
-        <h2>Products <span>{{ data?.response.data.length ?? 0 }}</span></h2>
+        <h2>{{ $t('pages.products.list.label') }} <span>{{ data?.response.data.length ?? 0 }}</span></h2>
       </div>
       <div class="action">
-        <NuxtLink to="/products/add">
-          <PrimaryButton> Add Product </PrimaryButton>
+        <NuxtLink :to="localePath('/products/add')">
+          <PrimaryButton> {{ $t('pages.products.list.action') }} </PrimaryButton>
         </NuxtLink>
       </div>
     </div>

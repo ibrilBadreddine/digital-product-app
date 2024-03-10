@@ -1,9 +1,9 @@
 <script setup lang="ts">
-
 </script>
 <template>
   <div class="app">
     <Welcome />
+    <SwitchLang />
   </div>
 </template>
 

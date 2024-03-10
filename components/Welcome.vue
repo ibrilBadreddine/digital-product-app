@@ -1,27 +1,29 @@
+<script setup lang="ts">
+const localePath = useLocalePath()
+</script>
 <template>
   <div class="welcome">
     <div class="header">
-      <h2>NPCs App welcomes you  👋 <br> where order emails happen automatically!</h2>
-      <p>
-        Your digital orders get automatic emails, making your life easier. Let's make your customers smile together!
-      </p>
+      <h2>{{ $t('welcome.title') }}</h2>
+      <h2>{{ $t('welcome.subtitle') }}</h2>
+      <p>{{ $t('welcome.message') }}</p>
     </div>
     <div class="select-option">
-      <NuxtLink class="option" to="/products">
+      <NuxtLink class="option" :to="localePath('products')">
         <div class="icon">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 0 1 0 3.75H5.625a1.875 1.875 0 0 1 0-3.75Z" />
           </svg>
         </div>
-        Show Products
+        {{ $t('welcome.options.show') }}
       </NuxtLink>
-      <NuxtLink class="option" to="/products/add">
+      <NuxtLink class="option" :to="localePath('/products/add')">
         <div class="icon">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
           </svg>
         </div>
-        Add Product
+        {{ $t('welcome.options.add') }}
       </NuxtLink>
     </div>
     <div class="bg-images">

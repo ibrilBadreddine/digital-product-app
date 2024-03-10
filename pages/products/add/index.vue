@@ -1,11 +1,21 @@
 <script setup lang="ts">
 
+const { t } = useI18n();
+
 const payload = ref({
   name: null,
   slug: null,
   price: null,
   file: null
 });
+
+// Placeholders
+const placeholders = ref({
+  name: t('pages.products.add.fields.name.placeholder'),
+  slug: t('pages.products.add.fields.slug.placeholder'),
+  price: t('pages.products.add.fields.price.placeholder'),
+  file: t('pages.products.add.fields.file_url.placeholder'),
+})
 </script>
 <template>
   <div class="add-product-container">
@@ -30,10 +40,10 @@ const payload = ref({
             />
           </svg>
         </div>
-        Add Product
+        {{ $t('pages.products.add.label') }}
       </h2>
       <div class="action">
-        <PrimaryButton> Create </PrimaryButton>
+        <PrimaryButton> {{ $t('pages.products.add.action') }} </PrimaryButton>
       </div>
     </div>
     <!-- Form -->
@@ -42,60 +52,60 @@ const payload = ref({
       <div class="form-content">
         <!-- Name -->
         <InputGroup>
-          <template #label> Name * </template>
+          <template #label> {{ $t('pages.products.add.fields.name.label') }} *</template>
           <template #input>
             <Input
               v-model="payload.name"
-              placeholder="Name ( Ex: blue summer shirt.. )"
+              :placeholder="placeholders.name"
               type="text"
               required
             />
           </template>
-          <template #info> Make it short, descriptive, and exciting </template>
+          <template #info> {{ $t('pages.products.add.fields.name.description') }} </template>
         </InputGroup>
         <!-- Slug -->
         <InputGroup>
-          <template #label> Slug * </template>
+          <template #label> {{ $t('pages.products.add.fields.slug.label') }} * </template>
           <template #input>
             <Input
               v-model="payload.slug"
-              placeholder="Slug..."
+              :placeholder="placeholders.slug"
               type="text"
               required
             />
           </template>
           <template #info>
-            Optimize your web address by personalizing it
+            {{ $t('pages.products.add.fields.slug.description') }}
           </template>
         </InputGroup>
         <!-- Price -->
         <InputGroup>
-          <template #label> Price * </template>
+          <template #label> {{ $t('pages.products.add.fields.price.label') }} * </template>
           <template #input>
             <Input
               v-model="payload.price"
-              placeholder="0.00"
+              :placeholder="placeholders.price"
               type="number"
               required
             />
           </template>
           <template #info>
-            Specify the cost of your product
+            {{ $t('pages.products.add.fields.price.description') }}
           </template>
         </InputGroup>
         <!-- File -->
         <InputGroup>
-          <template #label> File Url * </template>
+          <template #label> {{ $t('pages.products.add.fields.file_url.label') }} * </template>
           <template #input>
             <Input
               v-model="payload.file"
-              placeholder="File ( Ex: https://example.com/file-example.pdf )"
+              :placeholder="placeholders.file"
               type="text"
               required
             />
           </template>
           <template #info>
-            Paste the file URL for easy access
+            {{ $t('pages.products.add.fields.file_url.description') }}
           </template>
         </InputGroup>
       </div>
@@ -115,7 +125,7 @@ const payload = ref({
                     <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
                   </svg>
                 </div>
-                Link/
+                {{ $t('pages.products.add.link_action') }}
               </span>
               {{ payload.slug ?? '-' }}
             </h4>

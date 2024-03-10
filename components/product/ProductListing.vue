@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { columns, formatDate } from "./helpers";
+import { formatDate } from "./helpers";
 import type { Product } from "./types";
+
+const { t } = useI18n();
 
 const { products } = defineProps({
   products: {
@@ -18,13 +20,6 @@ const linkSuccess = ref(false);
 // Link Product
 const linkProduct = async (product: Product) => {
   linkSuccess.value = true;
-  // const link = await useFetch("/api/link-product", {
-  //   method: "post",
-  //   body: {
-  //     id: product.id,
-  //     file: product.images[0].url,
-  //   },
-  // });
 };
 
 // Pagination
@@ -37,24 +32,29 @@ const currentPage = ref(1);
 function handlePaginationNavigation(pageNumber: number) {
   currentPage.value = pageNumber;
 }
+
+// Placeholders
+const searchPlaceholder = t('pages.products.list.search.label');
 </script>
 <template>
   <div class="product-list">
     <div class="product-box">
       <!-- Filter -->
       <div class="product-filter">
-        <Input v-model="searchTerm" placeholder="Search by product name..." />
+        <Input v-model="searchTerm" :placeholder=searchPlaceholder />
         <div class="actions">
-          <PrimaryButton> Search </PrimaryButton>
+          <PrimaryButton> {{ $t('pages.products.list.search.label') }} </PrimaryButton>
         </div>
       </div>
       <!-- Table -->
       <table>
         <thead>
           <tr>
-            <th v-for="column in columns">
-              {{ column.label }}
-            </th>
+            <th>{{ $t('pages.products.list.columns.name') }}</th>
+            <th>{{ $t('pages.products.list.columns.price') }}</th>
+            <th>{{ $t('pages.products.list.columns.status') }}</th>
+            <th>{{ $t('pages.products.list.columns.created_at') }}</th>
+            <th>{{ $t('pages.products.list.columns.actions') }}</th>
           </tr>
         </thead>
         <tbody>
@@ -64,7 +64,9 @@ function handlePaginationNavigation(pageNumber: number) {
               <span class="row">{{ row.price }}</span>
             </td>
             <td>
-              <span class="row status">Stopped</span>
+              <span class="row status">
+                {{ $t('pages.products.list.link_status.stopped') }}
+              </span>
             </td>
             <td>{{ formatDate(row.created_at) }}</td>
             <td>
@@ -86,7 +88,7 @@ function handlePaginationNavigation(pageNumber: number) {
                       />
                     </svg>
                   </div>
-                  Link
+                  {{ $t('pages.products.list.link_action') }}
                 </button>
               </div>
             </td>

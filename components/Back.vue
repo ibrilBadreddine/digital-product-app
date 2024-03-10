@@ -1,6 +1,9 @@
+<script setup lang="ts">
+const localePath = useLocalePath()
+</script>
 <template>
   <div class="back-box">
-    <NuxtLink to="/">
+    <NuxtLink :to="localePath('/')">
       <div class="icon">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -17,7 +20,7 @@
           />
         </svg>
       </div>
-      Back to menu
+      {{ $t('back') }}
     </NuxtLink>
   </div>
 </template>

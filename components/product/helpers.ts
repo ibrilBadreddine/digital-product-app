@@ -1,16 +1,3 @@
-
-/**
- * 
- * Table Columns
- */
-export const columns = [
-  { label: "Name", accessor: "name" },
-  { label: "Price", accessor: "price" },
-  { label: "Status", accessor: "status" },
-  { label: "Created At", accessor: "created_at" },
-  { label: "Action", accessor: "action" },
-];
-
 /**
  * 
  * Format Date

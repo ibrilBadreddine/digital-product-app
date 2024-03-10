@@ -1,12 +1,16 @@
 <script setup lang="ts">
-// import 'uno.css';
-</script>
+const { locale } = useI18n();
 
+</script>
 <template>
-  <slot />
+  <div :class="{'layout-rtl' : locale === 'ar'}">
+    <slot />
+  </div>
 </template>
 
 <style lang="scss">
+@import 'https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;600;700&display=swap';
+
 .page-enter-active,
 .page-leave-active {
   transition: all 0.4s;
@@ -24,6 +28,12 @@ html {
   background-color: var(--base-white);
   font: var(--text-sm-regular);
 }
+
+.layout-rtl {
+  direction: rtl;
+  font-family: 'Noto Kufi Arabic', Mona-Sans, sans-serif !important;
+}
+
 .wrapper.enabled:has(.input:focus) {
   box-shadow: 0px 0px 0px 3px #d2e4f8, 0px 1px 2px 0px #3333330d;
   border-color: var(--blue-500);

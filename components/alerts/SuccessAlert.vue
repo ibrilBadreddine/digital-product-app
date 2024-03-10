@@ -32,12 +32,12 @@ const emit = defineEmits(['close']);
     </div>
     <!-- Details -->
     <div class="details">
-      <h3>Successful product linking!</h3>
-      <p>Your product is now linked. Verify in your product listing.</p>
+      <h3>{{ $t('alert.success.title') }}</h3>
+      <p>{{ $t('alert.success.message') }}</p>
     </div>
     <!-- Action -->
     <div class="action">
-      <button @click="emit('close')">Done</button>
+      <button @click="emit('close')">{{ $t('alert.success.action') }}</button>
     </div>
   </div>
   <div class="alert-bg" :class="{'alert-bg-close': !toggle}" />
