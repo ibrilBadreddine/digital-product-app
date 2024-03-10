@@ -24,6 +24,7 @@ const { data } = await useFetch("/api/products");
 </template>
 <style scoped lang="scss">
 .product-container {
+  padding: 4em;
   .product-label {
     display: flex;
     justify-content: space-between;

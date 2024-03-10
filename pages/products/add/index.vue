@@ -127,6 +127,7 @@ const payload = ref({
 </template>
 <style scoped lang="scss">
 .add-product-container {
+  padding: 4em;
   .label {
     display: flex;
     justify-content: space-between;

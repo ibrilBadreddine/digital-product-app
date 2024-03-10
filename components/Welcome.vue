@@ -40,7 +40,7 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  min-height: 90vh;
+  min-height: 100vh;
   .header {
     text-align: center;
     h2 {

@@ -12,15 +12,19 @@ const { products } = defineProps({
 // Search by product name
 const searchTerm = ref();
 
+// Link Alert - Status
+const linkSuccess = ref(true);
+
 // Link Product
 const linkProduct = async (product: Product) => {
-  const link = await useFetch("/api/link-product", {
-    method: "post",
-    body: {
-      id: product.id,
-      file: product.images[0].url,
-    },
-  });
+  linkSuccess.value = true;
+  // const link = await useFetch("/api/link-product", {
+  //   method: "post",
+  //   body: {
+  //     id: product.id,
+  //     file: product.images[0].url,
+  //   },
+  // });
 };
 
 // Pagination
@@ -101,6 +105,11 @@ function handlePaginationNavigation(pageNumber: number) {
       />
     </div>
   </div>
+  <!-- Alerts -->
+  <AlertsSuccessAlert 
+   :toggle="linkSuccess"
+   @close="linkSuccess = false"
+  />
 </template>
 <style scoped lang="scss">
 /* Product Listing */
