@@ -13,7 +13,7 @@ const { products } = defineProps({
 const searchTerm = ref();
 
 // Link Alert - Status
-const linkSuccess = ref(true);
+const linkSuccess = ref(false);
 
 // Link Product
 const linkProduct = async (product: Product) => {
