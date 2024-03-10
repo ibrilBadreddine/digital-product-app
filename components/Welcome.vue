@@ -1,9 +1,9 @@
 <template>
   <div class="welcome">
     <div class="header">
-      <h2>Welcome to NPCs App, your digital product detector! 👋</h2>
+      <h2>NPCs App welcomes you  👋 <br> where order emails happen automatically!</h2>
       <p>
-        Detect and secure your digital products with NPCs ultimate protection in a connected world.
+        Your digital orders get automatic emails, making your life easier. Let's make your customers smile together!
       </p>
     </div>
     <div class="select-option">
@@ -43,9 +43,11 @@
   min-height: 100vh;
   .header {
     text-align: center;
+    width: 50%;
     h2 {
       font-weight: normal;
-      font-size: 30px;
+      font-size: 35px;
+      line-height: 1.5em;
       margin-bottom: .5em;
     }
     p {
