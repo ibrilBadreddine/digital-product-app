@@ -4,6 +4,7 @@ const payload = ref({
   name: null,
   slug: null,
   price: null,
+  file: null
 });
 </script>
 <template>
@@ -80,6 +81,21 @@ const payload = ref({
           </template>
           <template #info>
             Specify the cost of your product
+          </template>
+        </InputGroup>
+        <!-- File -->
+        <InputGroup>
+          <template #label> File Url * </template>
+          <template #input>
+            <Input
+              v-model="payload.file"
+              placeholder="File ( Ex: https://example.com/file-example.pdf )"
+              type="text"
+              required
+            />
+          </template>
+          <template #info>
+            Paste the file URL for easy access
           </template>
         </InputGroup>
       </div>
