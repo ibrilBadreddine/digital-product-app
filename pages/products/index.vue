@@ -13,13 +13,13 @@ const { data } = await useFetch("/api/products");
         <h2>Products <span>0</span></h2>
       </div>
       <div class="action">
-        <PrimaryButton> Add Product </PrimaryButton>
+        <NuxtLink to="/products/add">
+          <PrimaryButton> Add Product </PrimaryButton>
+        </NuxtLink>
       </div>
     </div>
     <!-- Listing -->
-    <ProductListing 
-      :products="data?.response.data" 
-    />
+    <ProductListing :products="data?.response.data" />
   </div>
 </template>
 <style scoped lang="scss">
@@ -45,10 +45,15 @@ const { data } = await useFetch("/api/products");
     p {
       color: var(--gray-500);
     }
-    .base-button {
-      background-color: var(--blue-500);
-      color: var(--base-white);
-      padding: 12px 30px;
+    .action {
+      .base-button {
+        background-color: var(--blue-500);
+        color: var(--base-white);
+        padding: 12px 30px;
+      }
+      a {
+        text-decoration: none;
+      }
     }
   }
 }
